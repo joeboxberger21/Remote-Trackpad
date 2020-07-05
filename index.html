@@ -1,0 +1,50 @@
+<h1 style="background-color: black; color: white; text-align:center; Font-Family:Helvetica"></h1>
+
+<style>
+body {
+    background-color: grey;
+}
+</style>
+
+<script>
+let page = document.body
+new MouseEvent('event')
+var xhttp = new XMLHttpRequest();
+
+var mX = 0;
+var mY = 0;
+
+var downX = 0;
+var downY = 0;
+
+function mouseLocation(event) {
+    mX = event.pageX;
+    mY = event.pageY;
+};
+//Update mouseloc on mousemov
+page.addEventListener("mousemove", mouseLocation, false);
+page.addEventListener("mouseenter", mouseLocation, false);
+page.addEventListener("mouseleave", mouseLocation, false);
+
+page.addEventListener("mousedown", () => {
+    console.log("down")
+    downX = mX;
+    downY = mY;
+});
+
+page.addEventListener("mouseup", () => {
+    console.log("up")
+    let upX = mX;
+    let upY = mY;
+    diffX = upX - downX;
+    diffY = upY - downY;
+    console.log(diffX);
+    console.log(diffY);
+
+    xhttp.open('POST', '/', false);
+    xhttp.setRequestHeader("mouseLocX", diffX);
+    xhttp.setRequestHeader("mouseLocY", diffY);
+    xhttp.send();
+});
+
+</script>
