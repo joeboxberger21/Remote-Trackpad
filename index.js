@@ -1,13 +1,11 @@
 let app = require('express')();
-var pythonshell = require('python-shell');
+// var pythonshell = require('python-shell');
 const {exec} = require('child_process');
 const path = require('path');
 
-
 var options = {
-    mode: 'text',
+    // mode: 'text',
     pythonPath: 'C:/Users/J/AppData/Local/Programs/Python/Python36/python.exe',
-    // pythonOptions: ['-u'],
     // args: []
 };
 
@@ -25,10 +23,10 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     res.send(200);
     console.log("Recieved POST request");
-    console.log(req.headers.mouselocX)
-    console.log(req.headers.mouselocY)
+    // console.log(req.headers.mouselocX)
+    // console.log(req.headers.mouselocY)
     // options.pythonOptions.push(req.headers.mouselocX, req.headers.mouselocY)
-    exec("python ./MouseScript.py")
+    exec("sudo python3 MouseScript.py")
     // options.pythonOptions.push("50", "50")
     // runPython()
     console.log("Script Run")
